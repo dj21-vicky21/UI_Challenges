@@ -16,18 +16,6 @@ export default function Page() {
         setConversations(data.comments)
     }, [data])
 
-    //remove active chatarea parent
-    function removeActiveReply(className) {
-        const elementsWithClass = document.getElementsByClassName(className);
-
-        for (const element of elementsWithClass) {
-            const parentElement = element.parentElement;
-            if (parentElement) {
-                parentElement.remove();
-            }
-        }
-
-    }
 
     const handleaddComments = (comment) => {
         //skip submit btn if comment is empty
@@ -129,7 +117,6 @@ export default function Page() {
             comments: [...prevData.comments]
         }));
 
-        removeActiveReply('activeArea')
         // setData((data) => ({
         //     ...data,
         //     comments: [...data.comments, currentComment],
@@ -147,7 +134,6 @@ export default function Page() {
                                     id={conversation.id}
                                     handledeletecomment={handleDeleteComment}
                                     handleaddComments={handleReplyComments}
-                                    removeActiveReply={removeActiveReply}
                                     currentuser={data.currentUser}
                                     score={conversation.score}
                                     createdAt={conversation.createdAt}
@@ -162,7 +148,6 @@ export default function Page() {
                                                 className={"w-full md:w-12/12 mx-0"}
                                                 handleaddComments={handleReplyComments}
                                                 handledeletecomment={handleDeleteComment}
-                                                removeActiveReply={removeActiveReply}
                                                 id={replie.id}
                                                 replyingTo={replie.replyingTo}
                                                 score={replie.score}

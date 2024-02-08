@@ -22,19 +22,22 @@ import {
 } from "@/components/ui/dialog"
 
 function Chatui(props) {
-    const { id, currentuser, content, createdAt, username, score, img, className, replyingTo, handleaddComments, handledeletecomment, removeActiveReply} = props
+    const { id, currentuser, content, createdAt, username, score, img, className, replyingTo, handleaddComments, handledeletecomment } = props
 
     const { image: currentuserimage, username: currentUsername } = currentuser
 
     const commentArea = useRef(null)
+    const replyArearef = useRef(null)
     const updateArearef = useRef(null)
+
     const [editMode, setEditMode] = useState(false)
     const [comment, setcomment] = useState(content)
-    const [editArea, setEditArea] = useState()
+    const [openReplyArea, setOpenReplyArea] = useState(false)
     const [openModel, setopenModel] = useState(false)
 
     //edit reply for current user
     const toggleedit = () => {
+        console.log(updateArearef.current);
         setEditMode(prev => !prev)
     }
 
@@ -43,32 +46,26 @@ function Chatui(props) {
     }, [editMode])
 
 
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (commentArea.current && !commentArea.current.contains(event.target) && replyArearef.current && !replyArearef.current.contains(event.target)) {
+                setOpenReplyArea(false);
+            }
+        };
 
-    const handleReply = (e, replyto) => {
-        removeActiveReply('activeArea')
+        document.addEventListener('click', handleClickOutside);
 
-        if (e.target.innerText === "Cancel") {
-            return e.target.innerHTML = ReactDOMServer.renderToString(<FaReply />) + 'Reply'
-        }
+        return () => {
+            document.removeEventListener('click', handleClickOutside);
+        };
+    }, []);
 
-        const btnState = document.querySelectorAll('.btnstate')
 
-        if (btnState.length > 0) btnState.forEach(eachbtn => {
-            eachbtn.innerHTML = ReactDOMServer.renderToString(<FaReply />) + 'Reply'
-        })
-
-        e.target.innerText = "Cancel"
-
-        const parentElement = commentArea.current.parentElement;
-        const newChatArea = document.createElement('div');
-        newChatArea.className = 'w-full'
-
-        ReactDOM.render(<ChatArea className={"activeArea"} img={currentuserimage.png} username={currentUsername} handleaddComments={handleaddComments} replyingTo={username} />, newChatArea)
-        parentElement.insertBefore(newChatArea, commentArea.current.nextSibling);
+    const handleReply = (e) => {
+        setOpenReplyArea(prev => !prev)
     }
 
     const handlechange = (e) => {
-        // console.log(updateArearef.current.value)
         setcomment(updateArearef.current.value)
         toggleedit()
     }
@@ -85,7 +82,7 @@ function Chatui(props) {
                     <div className="flex items-center justify-between">
                         <p className="flex items-center gap-3">
                             <Avatar className='w-8 h-8'>
-                                <AvatarImage src={img}/>
+                                <AvatarImage src={img} />
                                 <AvatarFallback className='dark:text-white'>{capitalizeFirstLetter(username)}</AvatarFallback>
                             </Avatar>
                             <span className="text-darkblue font-medium flex items-center justify-center">{username}</span>
@@ -93,9 +90,8 @@ function Chatui(props) {
                             {username === currentUsername && <span className="rounded-md text-white bg-modernblue px-1.5 py-0.5 text-sm leading-none no-underline group-hover:no-underline">you</span>}
                             <span className="text-grayishblue tracking-tight flex items-center justify-center">{createdAt}</span>
                         </p>
-                        {username !== currentUsername ? <Button className="btnstate text-modernblue hover:text-opacity-50  hover:bg-white bg-white flex gap-1.5 absolute md:static bottom-3.5 right-5 " onClick={(e) => { handleReply(e, username) }}><>{<FaReply />} Reply</></Button> :
+                        {username !== currentUsername ? <Button className="btnstate text-modernblue hover:text-opacity-50  hover:bg-white bg-white flex gap-1.5 absolute md:static bottom-3.5 right-5 " onClick={(e) => { handleReply(e, username) }}>{!openReplyArea ? <><FaReply /> Reply</> : "Cancel"}</Button> :
                             <div className="flex gap-3 absolute md:static bottom-3.5 right-5">
-
                                 {!editMode && <Button className="flex items-center gap-2 bg-white hover:bg-white text-softred hover:text-palered" onClick={(e) => setopenModel(true)}><FaTrash /> Delete</Button>}
                                 <Button className="flex gap-2 bg-white hover:bg-white text-modernblue hover:text-opacity-50 " onClick={(e) => toggleedit()} >{!editMode && <FaPen />}{!editMode ? "Edit" : "Cancel"}</Button>
                             </div>
@@ -110,6 +106,13 @@ function Chatui(props) {
                     {editMode && <Button className="relative float-right text-white bg-modernblue hover:bg-modernblue hover:bg-opacity-50 mt-5" onClick={(e) => { handlechange(e) }} >Update</Button>}
                 </div>
             </div>
+
+            {openReplyArea && <div className="w-full">
+                <ChatArea ref={replyArearef} setOpenReplyArea={setOpenReplyArea} className={"activeArea"} img={currentuserimage.png} username={currentUsername} handleaddComments={handleaddComments} replyingTo={username} />
+            </div>}
+
+
+
             <Dialog open={openModel} onOpenChange={setopenModel}>
                 <DialogContent className='max-w-xs rounded-md'>
                     <DialogHeader>
