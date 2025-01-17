@@ -38,7 +38,12 @@ const ChatArea = React.forwardRef((props, ref) => {
             </Avatar>
             <div className='flex gap-3 w-full'>
                 <Textarea ref={textArea} className="w-full resize-none focus-visible:ring-white focus:border-darkblue" placeholder="Add a comments..." onKeyPress={handleKeyPress} />
-                <Button className="bg-modernblue hover:bg-opacity-50 hover:bg-modernblue-90 absolute bottom-3 right-10 md:static" onClick={(e) => handleaddComments(textArea, replyingTo, e)}>{reply ? "REPLY" : "SEND"}</Button>
+                <Button className="bg-modernblue hover:bg-opacity-50 hover:bg-modernblue-90 absolute bottom-3 right-10 md:static" onClick={(e) => {
+                    handleaddComments(textArea, replyingTo, e)
+                    if(setOpenReplyArea){
+                        setOpenReplyArea(prev=>!prev)
+                    }
+                    }}>{reply ? "REPLY" : "SEND"}</Button>
             </div>
         </div>
     )
