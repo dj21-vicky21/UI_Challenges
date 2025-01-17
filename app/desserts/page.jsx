@@ -31,7 +31,7 @@ const DessertsPage = () => {
       handleOpenModal("close");
     }, 3000);
     
-  }, [isOpen]);
+  }, [isOpen,cart.length,resetCart]);
 
   return (
     <section className="flex justify-center gap-8 w-full shadow-[0px_0px_5px_0px_rgba(0,_0,_0,_0.1)] p-10 bg-[hsl(20,50%,98%)]">

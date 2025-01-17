@@ -42,7 +42,7 @@ function Chatui(props) {
 
     useEffect(() => {
         if (!comment) setcomment(comment)
-    }, [editMode])
+    }, [editMode,comment])
 
 
     useEffect(() => {

@@ -44,4 +44,6 @@ const ChatArea = React.forwardRef((props, ref) => {
     )
 });
 
+ChatArea.displayName = "ChatArea";
+
 export default ChatArea
