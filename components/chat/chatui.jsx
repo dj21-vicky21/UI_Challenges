@@ -8,8 +8,8 @@ import ReactDOMServer from 'react-dom/server';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button";
 import { capitalizeFirstLetter, cn } from "@/lib/utils";
-import Scorebtn from "@/components/chatui/scorebtn";
-import ChatArea from "@/components/chatui/replyArea";
+import Scorebtn from "@/components/chat/scorebtn";
+import ChatArea from "@/components/chat/replyArea";
 import { Textarea } from "@/components/ui/textarea";
 import {
     Dialog,
@@ -118,14 +118,14 @@ function Chatui(props) {
                     <DialogHeader>
                         <DialogTitle className="text-left">Delete comment</DialogTitle>
                         <DialogDescription className="mt-2">
-                            <div className="mt-4 text-left" >Are you sure you want to delete this comment? This will remove the comment and can't be undone.
-                            </div>
-                            <div className="flex gap-3 mt-4 justify-between">
+                            <span className="mt-4 text-left" >Are you sure you want to delete this comment? This will remove the comment and can&#39;t be undone.
+                            </span>
+                            <span className="flex gap-3 mt-4 justify-between">
                                 <DialogClose asChild>
                                     <Button className="text-white w-full bg-darkblue hover:bg-darkblue hover:bg-opacity-50">NO,CANCEL</Button>
                                 </DialogClose>
                                 <Button className="text-white w-full bg-softred hover:bg-softred hover:bg-opacity-50" onClick={(e) => handledeletecomment(id)}>YES,DELETE</Button>
-                            </div>
+                            </span>
                         </DialogDescription>
                     </DialogHeader>
                 </DialogContent>

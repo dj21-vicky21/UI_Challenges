@@ -2,9 +2,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-import Chatui from '@/components/chatui/chatui';
-import json from "@/components/chatui/data.json"
-import ChatArea from '@/components/chatui/replyArea';
+import Chatui from '@/components/chat/chatui';
+import json from "@/components/chat/data.json"
+import ChatArea from '@/components/chat/replyArea';
 
 
 export default function Page() {
