@@ -7,7 +7,7 @@ import useDessertStore from "@/store/desserts-store";
 
 export const DessertCard = (props) => {
   const { img, category, name , price } = props;
-  const { mobile, tablet, desktop } = img;
+  const { mobile, tablet, desktop ,thumbnail} = img;
   const [quantity, setQuantity] = useState(0);
   const { setCart, cart } = useDessertStore();
 
@@ -15,12 +15,12 @@ export const DessertCard = (props) => {
     try {
       switch (action) {
         case "add":
-          setCart(name, quantity+1, price)
+          setCart(name, quantity+1, price, thumbnail)
           setQuantity((prev) => prev + 1);
           break;
         case "remove":
           if (!quantity) return;
-          setCart(name, quantity-1, price)
+          setCart(name, quantity-1, price, thumbnail)
           setQuantity((prev) => prev - 1);
           break;
         default:

@@ -4,7 +4,7 @@ const useDessertStore = create((set) => ({
   cart: [],
   totalPrice: 0,
   // Add or update an item in the cart and update the total price
-  setCart: (name, quantity, price) =>
+  setCart: (name, quantity, price,image) =>
     set((state) => {
       const existingItemIndex = state.cart.findIndex(
         (item) => item.name === name
@@ -21,13 +21,14 @@ const useDessertStore = create((set) => ({
           updatedCart[existingItemIndex] = {
             ...updatedCart[existingItemIndex],
             quantity: quantity, // Set quantity to the new value
-            price, // Update the price to the new value
+            price,
+            image // Update the price to the new value
           };
         }
       } else {
         // If the item doesn't exist and quantity is not 0, add a new item
         if (quantity > 0) {
-          updatedCart = [...state.cart, { name, quantity, price }];
+          updatedCart = [...state.cart, { name, quantity, price, image }];
         } else {
           updatedCart = state.cart; // If quantity is 0, no item is added
         }

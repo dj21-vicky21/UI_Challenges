@@ -13,20 +13,25 @@ const DessertsPage = () => {
   const { cart, totalPrice, resetCart } = useDessertStore();
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleOpenModal = () => {
-    setIsOpen((prev) => !prev);
+  const handleOpenModal = (value) => {
+    if (value) {
+      setIsOpen(false);
+    } else {
+      setIsOpen((prev) => !prev);
+    }
   };
 
   useEffect(() => {
-    if (!isOpen) return;
+    if (!isOpen) resetCart();
+
     setTimeout(() => {
+      if (!isOpen) return;
+      if (!cart.length) return;
       resetCart();
-    }, 1000);
-    resetCart();
-    setTimeout(() => {
-      handleOpenModal();
+      handleOpenModal("close");
     }, 3000);
-  }, [isOpen,resetCart]);
+    
+  }, [isOpen]);
 
   return (
     <section className="flex justify-center gap-8 w-full shadow-[0px_0px_5px_0px_rgba(0,_0,_0,_0.1)] p-10 bg-[hsl(20,50%,98%)]">
@@ -37,7 +42,12 @@ const DessertsPage = () => {
         )}
       >
         <h1 className="text-4xl font-bold">Desserts</h1>
-        <div className={cn("grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4",cart.length != 0 && "grid-cols-1")}>
+        <div
+          className={cn(
+            "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4",
+            cart.length != 0 && "grid-cols-1"
+          )}
+        >
           {data.map((data) => {
             return (
               <div key={data.name} className="">
@@ -60,10 +70,16 @@ const DessertsPage = () => {
             </h1>
             <div className="mt-3">
               {cart.map((eachItem) => {
-                const { name, quantity, price } = eachItem;
+                const { name, quantity, price, image } = eachItem;
                 return (
                   <div key={eachItem.name}>
-                    <CartCard name={name} quantity={quantity} price={price} />
+                    <CartCard
+                      name={name}
+                      quantity={quantity}
+                      price={price}
+                      image={image}
+                      isOrderConfirmed={false}
+                    />
                   </div>
                 );
               })}

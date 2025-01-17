@@ -37,7 +37,6 @@ function Chatui(props) {
 
     //edit reply for current user
     const toggleedit = () => {
-        console.log(updateArearef.current);
         setEditMode(prev => !prev)
     }
 
