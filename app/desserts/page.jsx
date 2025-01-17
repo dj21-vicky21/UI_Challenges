@@ -26,12 +26,11 @@ const DessertsPage = () => {
 
     setTimeout(() => {
       if (!isOpen) return;
-      if (!cart.length) return;
       resetCart();
       handleOpenModal("close");
     }, 3000);
     
-  }, [isOpen,cart.length,resetCart]);
+  }, [isOpen,resetCart]);
 
   return (
     <section className="flex justify-center gap-8 w-full shadow-[0px_0px_5px_0px_rgba(0,_0,_0,_0.1)] p-10 bg-[hsl(20,50%,98%)]">
