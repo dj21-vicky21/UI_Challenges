@@ -41,10 +41,10 @@ const DessertsPage = () => {
           cart.length > 0 ? "sm:w-2/6 md:w-4/6" : "w-full"
         )}
       >
-        <h1 className="text-4xl font-bold">Desserts</h1>
+        <h1 className="text-2xl sm:text-4xl font-bold">Desserts</h1>
         <div
           className={cn(
-            "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4",
+            "grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4",
             cart.length != 0 && "grid-cols-1"
           )}
         >
