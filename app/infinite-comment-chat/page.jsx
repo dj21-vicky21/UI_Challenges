@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react';
-import Comment from './comment'; // Importing the Comment component
+import Comment from './Comment';
 
 // Add this helper function after imports
 const getRandomAvatar = () => {
