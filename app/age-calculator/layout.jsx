@@ -1,7 +1,8 @@
 export default function AgeCalculatorLayout({ children }) {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4">
+    <main className="min-h-screen w-full overflow-hidden">
+      {/* We'll handle the background and decorative elements in the page component */}
       {children}
-    </div>
+    </main>
   );
 } 
