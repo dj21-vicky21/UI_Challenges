@@ -95,7 +95,7 @@ export default function AgeCalculator() {
   };
 
   return (
-    <div className="glass-effect p-8 md:p-12 rounded-[24px] rounded-br-[100px] shadow-[0_20px_60px_-10px_rgba(103,60,205,0.2)] max-w-3xl w-full animate-float">
+    <div className="glass-effect p-8 md:p-12 rounded-[24px] rounded-br-[100px] shadow-[0_20px_60px_-10px_rgba(103,60,205,0.2)] max-w-3xl w-full">
       {/* Header */}
       <h2 className="sr-only">Age Calculator Form</h2>
       
