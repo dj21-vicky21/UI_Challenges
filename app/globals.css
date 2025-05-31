@@ -133,3 +133,10 @@
     animation: flipBottom 700ms cubic-bezier(0.4, 0, 0.2, 1)  forwards; /* Start after top animation completes */
   }
 }
+
+/* Custom Age Calculator Styles */
+.rounded-br-8xl {
+  border-bottom-right-radius: 100px;
+}
+
+/* Other custom styles below if needed */
