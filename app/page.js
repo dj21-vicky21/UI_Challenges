@@ -143,6 +143,30 @@ export default function HomePage() {
               </div>
             </div>
           </Link>
+
+          <Link href="/creative-clock" className="group">
+            <div className="h-full bg-slate-800 border border-slate-700 rounded-xl overflow-hidden hover:border-emerald-500/50 transition-all duration-300">
+              <div className="p-6 flex flex-col h-full">
+                <div className="flex items-center mb-4">
+                  <span className="w-10 h-10 rounded-lg bg-emerald-500/20 flex items-center justify-center text-emerald-400 mr-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
+                    </svg>
+                  </span>
+                  <h2 className="text-xl font-semibold text-white group-hover:text-emerald-400 transition-colors">Creative Clock</h2>
+                </div>
+                <p className="text-slate-400 mb-4">A creative clock component with a unique design.</p>
+                <div className="mt-auto flex justify-end">
+                  <span className="text-emerald-400 group-hover:translate-x-1 transition-transform duration-300 inline-flex items-center">
+                    Explore 
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                    </svg>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </Link>
         </div>
       </main>
 
